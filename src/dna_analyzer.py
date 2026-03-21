@@ -1,3 +1,6 @@
+''' A Python-based bioinformatics tool that identifies Open Reading Frames (ORFs) in DNA sequences and translates them into protein sequences. This project simulates a simplified genomic analysis pipeline used in computational biology and health tech applications.
+
+'''
 
 CODON_TABLE = {
     "ATA":"I","ATC":"I","ATT":"I","ATG":"M",
