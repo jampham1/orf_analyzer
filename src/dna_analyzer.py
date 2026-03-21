@@ -21,7 +21,6 @@ CODON_TABLE = {
     "TGC":"C","TGT":"C","TGA":"*","TGG":"W",
 }
 
-# Retrieves fasta file and assigns value to "sequence" variable
 def read_fasta(filename):
     sequences = {}
     header = None
@@ -38,12 +37,11 @@ def read_fasta(filename):
 
     return sequences
 
-# Generates the complementary strand to original sequence
 def reverse_complement(sequence):
     complement = {"A": "T", "T": "A", "C": "G", "G": "C"}
     return "".join(complement[base] for base in reversed(sequence))
 
-#Analyzes ORFs for start/end position, reading frame, AA count w/ names
+
 def find_orfs(sequence):
     start_codon = "ATG"
     stop_codons = {"TAA", "TAG", "TGA"}
@@ -75,7 +73,7 @@ def find_orfs(sequence):
 
     return orfs
 
-# Analyzes both original and complementary sequences; adds to ORF list
+
 def analyze_sequence(name, sequence, output_file):
 
     strands = {
@@ -93,7 +91,7 @@ def analyze_sequence(name, sequence, output_file):
                 f"{name}\t{strand_name}\t{frame}\t{start}\t{end}\t{aa}\t{protein}\n"
             )
 
-# Analyzes input sequence, generates output in a new file called "orf_results.tsv"
+
 def analyze_fasta(input_file, output_file="orf_results.tsv"):
 
     sequences = read_fasta(input_file)
@@ -107,7 +105,7 @@ def analyze_fasta(input_file, output_file="orf_results.tsv"):
 
     print(f"Results saved to {output_file}")
 
-# Converts codons directs to AA name
+
 def translate_dna(dna_sequence):
     protein = ""
 
@@ -123,7 +121,6 @@ def translate_dna(dna_sequence):
     return protein
 
 
-# run the script
 analyze_fasta("../data/dna.fasta")
 
 # AFTER THIS POINT, USES OUTPUT FILE DATA FROM "orf_results.tsv"
